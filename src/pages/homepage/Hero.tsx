@@ -73,7 +73,7 @@ const Hero = () => {
             </div>
 
             <img
-                src={photo?.urls.full}
+                src={photo?.urls.regular}
                 alt={photo?.alt_description}
                 className="h-full w-full object-cover"
             />

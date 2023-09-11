@@ -48,7 +48,7 @@ const Gallery = () => {
                                 <Link to={`/photo/${photo.id}`}>
                                     <div className="aspect-square overflow-hidden rounded-lg mb-2 shadow-lg">
                                         <img
-                                            src={photo.urls.full}
+                                            src={photo.urls.regular}
                                             alt={photo.alt_description}
                                             className="w-full h-full object-cover hover:scale-125 cursor-pointer transition"
                                             loading="lazy"
