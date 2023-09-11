@@ -44,41 +44,44 @@ const PhotoDetail = () => {
     }, []);
 
     return (
-        <div className="w-full h-full p-4">
-            <div className="grid lg:grid-cols-2 text-sm lg:text-base">
-                <img
-                    src={photo?.urls.regular}
-                    alt={photo?.alt_description}
-                    className="rounded-lg shadow-lg w-full h-full object-cover aspect-square"
-                />
-                <div className="p-2 lg:p-4">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                            <img
-                                src={photo?.user.profile_image.large}
-                                alt=""
-                                className="rounded-full aspect-square"
-                                width={30}
-                            />
-                            {photo?.user.name}
-                        </div>
-                        <div className="flex items-center gap-4">
+        
+            
+            <div className="w-full h-full p-4">
+                <div className="grid lg:grid-cols-2 text-sm lg:text-base">
+                    <img
+                        src={photo?.urls.regular}
+                        alt={photo?.alt_description}
+                        className="rounded-lg shadow-lg w-full h-full object-cover aspect-square"
+                    />
+                    <div className="p-2 lg:p-4">
+                        <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-2">
-                                <FaRegHeart />
-                                {photo?.likes}
+                                <img
+                                    src={photo?.user.profile_image.large}
+                                    alt=""
+                                    className="rounded-full aspect-square"
+                                    width={30}
+                                />
+                                {photo?.user.name}
                             </div>
-                            <div className="flex items-center gap-2">
-                                <BsDownload />
-                                {photo?.downloads}
+                            <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-2">
+                                    <FaRegHeart />
+                                    {photo?.likes}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <BsDownload />
+                                    {photo?.downloads}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        {photo?.description}
+                        <div>
+                            {photo?.description}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
     )
 }
 
