@@ -22,14 +22,14 @@ const Search = () => {
 
             try {
 
-                let response = await fetch(`https://api.unsplash.com/search/photos&query=${query}`, {
+                let response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=12`, {
                     method: "GET",
                     headers: headersList
                 });
 
                 let data = await response.json();
                 console.log(data);
-                setPhotos(data)
+                setPhotos(data.results)
 
 
             } catch (error) {
@@ -51,7 +51,7 @@ const Search = () => {
                                 <Link to={`/photo/${photo.id}`}>
                                     <div className="aspect-square overflow-hidden rounded-lg mb-2 shadow-lg">
                                         <img
-                                            src={photo.urls.full}
+                                            src={photo.urls.regular}
                                             alt={photo.alt_description}
                                             className="w-full h-full object-cover hover:scale-125 cursor-pointer transition"
                                             loading="lazy"

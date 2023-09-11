@@ -47,7 +47,7 @@ const PhotoDetail = () => {
         <div className="w-full h-full p-4">
             <div className="grid lg:grid-cols-2 text-sm lg:text-base">
                 <img
-                    src={photo?.urls.full}
+                    src={photo?.urls.regular}
                     alt={photo?.alt_description}
                     className="rounded-lg shadow-lg w-full h-full object-cover aspect-square"
                 />
