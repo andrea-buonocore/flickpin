@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import { Photo } from "../../Interfaces/Photo";
-import {FaRegHeart} from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Gallery = () => {
 
     const [photos, setPhotos] = useState<Photo[] | null>([]);
 
-    let headersList = {
+    const headersList = {
         "Accept": "*/*",
         "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         "Authorization": "Client-ID 0QuxCCaZBXT_3um02bZmS5ZwrZ7XXs08qyCTTjg1KhE"
     }
-
-
-
 
     useEffect(() => {
 
@@ -48,14 +46,16 @@ const Gallery = () => {
                     photos.map(photo => {
                         return (
                             <div key={photo.id}>
-                                <div className="aspect-square overflow-hidden rounded-lg mb-2">
-                                    <img
-                                        src={photo.urls.full}
-                                        alt={photo.alt_description}
-                                        className="w-full h-full object-cover hover:scale-125 cursor-pointer transition"
-                                        loading="lazy"
-                                    />
-                                </div>
+                                <Link to={`/photo/${photo.id}`}>
+                                    <div className="aspect-square overflow-hidden rounded-lg mb-2 shadow-lg">
+                                        <img
+                                            src={photo.urls.full}
+                                            alt={photo.alt_description}
+                                            className="w-full h-full object-cover hover:scale-125 cursor-pointer transition"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                </Link>
                                 <div className="flex justify-between items-center text-xs lg:text-sm">
                                     <div className="flex items-center gap-2">
                                         <div>
@@ -69,7 +69,7 @@ const Gallery = () => {
                                         {photo.user.name}
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <FaRegHeart/>
+                                        <FaRegHeart />
                                         {photo.likes}
                                     </div>
                                 </div>

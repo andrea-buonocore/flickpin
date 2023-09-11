@@ -7,7 +7,7 @@ const Header = () => {
             <NavLink to="/home" className="font-bold">FlickPin</NavLink>
             <nav>
                 <ul className="flex gap-4">
-                    <li className="font-light"><NavLink to="/home"><AiOutlineHome size={20}/></NavLink></li>
+                    <li className="font-light"><NavLink to="/"><AiOutlineHome size={20}/></NavLink></li>
                     <li className="font-light"><NavLink to="/me"><AiOutlineUser size={20}/></NavLink></li>
                 </ul>
             </nav>

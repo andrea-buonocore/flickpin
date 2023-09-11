@@ -50,7 +50,7 @@ const Hero = () => {
                     <input
                         type="search"
                         name="search"
-                        className="rounded-full py-2 px-4 outline-none w-full md:w-[50%] lg:w-[30%] text-black font-light text-xs placeholder:italic"
+                        className="rounded-full py-3 px-4 outline-none w-[80%] md:w-[50%] lg:w-[30%] text-black font-light text-xs placeholder:italic shadow"
                         placeholder="Lasciati ispirare.."
                     />
                 </form>
