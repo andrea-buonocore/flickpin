@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Photo } from "../../Interfaces/Photo";
 import { FaRegHeart } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
-const Gallery = () => {
+const Search = () => {
 
     const [photos, setPhotos] = useState<Photo[] | null>([]);
+
+    const params = useParams();
+    const {query} = params;
 
     const headersList = {
         "Accept": "*/*",
@@ -19,7 +22,7 @@ const Gallery = () => {
 
             try {
 
-                let response = await fetch("https://api.unsplash.com/photos/", {
+                let response = await fetch(`https://api.unsplash.com/search/photos&query=${query}`, {
                     method: "GET",
                     headers: headersList
                 });
@@ -81,4 +84,4 @@ const Gallery = () => {
     )
 }
 
-export default Gallery;
+export default Search;
