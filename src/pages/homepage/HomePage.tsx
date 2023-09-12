@@ -1,11 +1,9 @@
-import Header from "../../shared/Header";
 import Gallery from "./Gallery";
 import Hero from "./Hero";
 
 const HomePage = () => {
     return (
-        <div>
-            
+        <div>            
             <Hero />
             <Gallery/>
         </div>
