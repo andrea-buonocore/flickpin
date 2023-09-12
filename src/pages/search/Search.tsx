@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Photo } from "../../Interfaces/Photo";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaSpinner } from "react-icons/fa";
 
 const Search = () => {
 
     const [photos, setPhotos] = useState<Photo[] | null>([]);
-
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [pageCounter, setPageCounter] = useState<number>(1);
     const params = useParams();
-    const {query} = params;
+    const { query } = params;
 
     const headersList = {
         "Accept": "*/*",
@@ -22,7 +23,7 @@ const Search = () => {
 
             try {
 
-                let response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=12`, {
+                let response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=12&page=${pageCounter}`, {
                     method: "GET",
                     headers: headersList
                 });
@@ -35,6 +36,10 @@ const Search = () => {
             } catch (error) {
                 console.log(error);
             }
+            
+            finally {
+                setIsLoading(false);
+            }
         }
 
         getPhotos();
@@ -42,6 +47,14 @@ const Search = () => {
 
     return (
         <div className="p-8">
+            <h3 className="mb-4">Result for: <b>{query}</b></h3>
+            {
+                isLoading && (
+                    <div className="flex justify-center my-4">
+                        <FaSpinner size={30} className="animate-spin"/>
+                    </div>
+                )
+            }
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {
                     photos &&
@@ -79,6 +92,13 @@ const Search = () => {
                         )
                     })
                 }
+            </div>
+            <div className="flex items-center justify-center gap-1">
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
             </div>
         </div>
     )
