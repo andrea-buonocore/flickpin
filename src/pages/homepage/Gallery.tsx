@@ -40,11 +40,11 @@ const Gallery = () => {
     }, []);
 
     return (
-        <div className="p-8">
+        <div className="p-4 lg:p-8">
             {
                 !photos && isLoading && (
                     <div className="mb-8 flex justify-center">
-                        <FaSpinner size={30} className="animate-spin"/>
+                        <FaSpinner size={30} className="animate-spin" />
                     </div>
                 )
             }
@@ -53,7 +53,7 @@ const Gallery = () => {
                     photos &&
                     photos.map(photo => {
                         return (
-                            <div key={photo.id} className="mb-4">
+                            <div key={photo.id} className="lg:mb-4">
                                 {/* photo */}
                                 <Link to={`/photo/${photo.id}`}>
                                     <div className="overflow-hidden rounded-lg mb-3 shadow-xl">
@@ -67,17 +67,19 @@ const Gallery = () => {
                                 </Link>
                                 {/* user */}
                                 <div className="flex justify-between items-center text-xs lg:text-sm">
-                                    <div className="flex items-center gap-2">
-                                        <div>
-                                            <img
-                                                src={photo.user.profile_image.small}
-                                                alt=""
-                                                className="rounded-full aspect-square"
-                                                width={20}
-                                            />
+                                    <Link to={`/user/${photo.user.username}`}>
+                                        <div className="flex items-center gap-2">
+                                            <div>
+                                                <img
+                                                    src={photo.user.profile_image.small}
+                                                    alt=""
+                                                    className="rounded-full aspect-square"
+                                                    width={20}
+                                                />
+                                            </div>
+                                            {photo.user.name}
                                         </div>
-                                        {photo.user.name}
-                                    </div>
+                                    </Link>
                                     <div className="flex items-center gap-1">
                                         <FaRegHeart />
                                         {photo.likes}

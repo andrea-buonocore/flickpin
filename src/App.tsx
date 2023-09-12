@@ -4,6 +4,7 @@ import PhotoDetail from "./pages/Photo/PhotoDetail";
 import Search from "./pages/search/Search";
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
+import UserPage from "./pages/user_page/UserPage";
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/photo/:id" element={<PhotoDetail />} />
           <Route path="/search/:query" element={<Search />} />
+          <Route path="/user/:username" element={<UserPage />} />
+
         </Routes>
         
         <Footer />
