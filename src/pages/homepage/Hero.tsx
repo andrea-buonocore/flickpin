@@ -62,7 +62,7 @@ const Hero = () => {
                 <form className="w-full text-center" onSubmit={formSubmit}>
                     <input
                         type="search"
-                        name="search"
+                        name="image"
                         className="rounded-full py-3 px-4 outline-none w-[80%] md:w-[50%] lg:w-[30%] text-black font-light text-xs placeholder:italic shadow"
                         placeholder="Lasciati ispirare.."
                         value={query}

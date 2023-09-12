@@ -19,7 +19,7 @@ const Gallery = () => {
 
             try {
 
-                let response = await fetch("https://api.unsplash.com/photos/", {
+                let response = await fetch("https://api.unsplash.com/photos?per_page=12", {
                     method: "GET",
                     headers: headersList
                 });
@@ -39,18 +39,18 @@ const Gallery = () => {
 
     return (
         <div className="p-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 {
                     photos &&
                     photos.map(photo => {
                         return (
-                            <div key={photo.id}>
+                            <div key={photo.id} className="mb-4">
                                 <Link to={`/photo/${photo.id}`}>
-                                    <div className="aspect-square overflow-hidden rounded-lg mb-2 shadow-lg">
+                                    <div className="overflow-hidden rounded-lg mb-3 shadow-xl">
                                         <img
                                             src={photo.urls.regular}
                                             alt={photo.alt_description}
-                                            className="w-full h-full object-cover hover:scale-125 cursor-pointer transition"
+                                            className="aspect-square w-full h-full object-cover hover:scale-125 cursor-pointer transition"
                                             loading="lazy"
                                         />
                                     </div>
