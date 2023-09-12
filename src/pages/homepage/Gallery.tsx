@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Photo } from "../../Interfaces/Photo";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Gallery = () => {
 
     const [photos, setPhotos] = useState<Photo[] | null>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const headersList = {
         "Accept": "*/*",
@@ -26,7 +27,8 @@ const Gallery = () => {
 
                 let data = await response.json();
                 console.log(data);
-                setPhotos(data)
+                setPhotos(data);
+                setIsLoading(false)
 
 
             } catch (error) {
@@ -35,10 +37,18 @@ const Gallery = () => {
         }
 
         getPhotos();
+
     }, []);
 
     return (
         <div className="p-8">
+            {
+                !photos && isLoading && (
+                    <div className="mb-8 flex justify-center">
+                        <FaSpinner size={30} className="animate-spin"/>
+                    </div>
+                )
+            }
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 {
                     photos &&
