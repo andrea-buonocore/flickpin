@@ -36,7 +36,6 @@ const Hero = () => {
                 });
 
                 let data = await response.json();
-                console.log('hero', data);
                 setPhoto(data);
 
 

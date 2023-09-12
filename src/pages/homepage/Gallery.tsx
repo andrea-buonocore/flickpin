@@ -26,7 +26,6 @@ const Gallery = () => {
                 });
 
                 let data = await response.json();
-                console.log(data);
                 setPhotos(data);
                 setIsLoading(false)
 
