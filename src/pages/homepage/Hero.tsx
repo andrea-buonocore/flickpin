@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, InputHTMLAttributes, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Photo } from "../../Interfaces/Photo";
 import { useNavigate } from "react-router-dom";
 

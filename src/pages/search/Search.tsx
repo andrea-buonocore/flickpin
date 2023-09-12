@@ -7,7 +7,7 @@ const Search = () => {
 
     const [photos, setPhotos] = useState<Photo[] | null>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [pageCounter, setPageCounter] = useState<number>(1);
+    // const [pageCounter, setPageCounter] = useState<number>(1);
     const params = useParams();
     const { query } = params;
 
@@ -94,11 +94,11 @@ const Search = () => {
                 }
             </div>
             <div className="flex items-center justify-center gap-1">
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{pageCounter}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
             </div>
         </div>
     )

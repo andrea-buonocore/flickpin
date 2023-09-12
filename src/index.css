@@ -4,8 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-html, body {
+html,
+body {
     font-family: 'Noto Sans JP', sans-serif;
 }
