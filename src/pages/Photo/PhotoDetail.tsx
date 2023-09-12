@@ -53,7 +53,7 @@ const PhotoDetail = () => {
         <div className="w-full h-full p-8">
             {
                 modal && (
-                    <div className="absolute top-0 left-0 bg-black/90 w-full   p-8 lg:p-[5rem] flex items-center">
+                    <div className="absolute top-0 left-0 bg-black/90 w-full h-screen p-8 lg:p-[5rem] flex items-center">
                         <div className="absolute top-8 right-8 text-white cursor-pointer" onClick={handleModal}>
                             <AiOutlineClose
                                 size={30}

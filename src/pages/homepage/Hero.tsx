@@ -51,14 +51,13 @@ const Hero = () => {
 
     return (
 
-
         <div className="h-[70vh] relative flex flex-col items-center justify-center">
 
             <div className="absolute top-0 left-0 w-full h-full bg-black/70 text-white flex flex-col items-center justify-center p-8">
 
                 <h1 className="text-3xl lg:text-5xl font-bold mb-4">FlickPin</h1>
                 <h2 className="text-xs lg:text-base font-light mb-4 text-center">La galleria fotografica che unisce l'arte di Flickr con l'ispirazione di Pinterest</h2>
-                
+
                 <form className="w-full text-center" onSubmit={formSubmit}>
                     <input
                         type="search"

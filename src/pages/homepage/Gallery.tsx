@@ -55,6 +55,7 @@ const Gallery = () => {
                     photos.map(photo => {
                         return (
                             <div key={photo.id} className="mb-4">
+                                {/* photo */}
                                 <Link to={`/photo/${photo.id}`}>
                                     <div className="overflow-hidden rounded-lg mb-3 shadow-xl">
                                         <img
@@ -65,6 +66,7 @@ const Gallery = () => {
                                         />
                                     </div>
                                 </Link>
+                                {/* user */}
                                 <div className="flex justify-between items-center text-xs lg:text-sm">
                                     <div className="flex items-center gap-2">
                                         <div>
