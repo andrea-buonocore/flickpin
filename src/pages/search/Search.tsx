@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Photo, SearchResult } from "../../Interfaces/Photo";
+import { SearchResult } from "../../Interfaces/Photo";
 import { FaRegHeart, FaSpinner } from "react-icons/fa";
-import clsx from "clsx";
+
 
 const Search = () => {
 
