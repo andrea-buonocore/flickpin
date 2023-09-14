@@ -36,7 +36,7 @@ const Search = () => {
             } catch (error) {
                 console.log(error);
             }
-            
+
             finally {
                 setIsLoading(false);
             }
@@ -51,11 +51,11 @@ const Search = () => {
             {
                 isLoading && (
                     <div className="flex justify-center my-4">
-                        <FaSpinner size={30} className="animate-spin"/>
+                        <FaSpinner size={30} className="animate-spin" />
                     </div>
                 )
             }
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
                 {
                     photos &&
                     photos.map(photo => {
@@ -71,23 +71,27 @@ const Search = () => {
                                         />
                                     </div>
                                 </Link>
-                                <div className="flex justify-between items-center text-xs lg:text-sm">
-                                    <div className="flex items-center gap-2">
-                                        <div>
-                                            <img
-                                                src={photo.user.profile_image.small}
-                                                alt=""
-                                                className="rounded-full aspect-square"
-                                                width={20}
-                                            />
+                                
+                                <Link to={`/user/${photo.user.username}`}>
+                                    <div className="flex justify-between items-center text-xs lg:text-sm">
+                                        <div className="flex items-center gap-2">
+                                            <div>
+                                                <img
+                                                    src={photo.user.profile_image.small}
+                                                    alt=""
+                                                    className="rounded-full aspect-square"
+                                                    width={20}
+                                                />
+                                            </div>
+                                            {photo.user.name}
                                         </div>
-                                        {photo.user.name}
+                                        <div className="flex items-center gap-1">
+                                            <FaRegHeart />
+                                            {photo.likes}
+                                        </div>
                                     </div>
-                                    <div className="flex items-center gap-1">
-                                        <FaRegHeart />
-                                        {photo.likes}
-                                    </div>
-                                </div>
+                                </Link>
+
                             </div>
                         )
                     })
