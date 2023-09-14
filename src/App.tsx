@@ -6,13 +6,25 @@ import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 import UserPage from "./pages/user_page/UserPage";
 
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
 
 
   return (
     <>
       <BrowserRouter>
-        
+        <ScrollToTop/>
         <Header />
         
         <Routes>

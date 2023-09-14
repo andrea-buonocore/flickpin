@@ -19,6 +19,9 @@ const PhotoDetail = () => {
     const { id } = param;
 
     const handleModal = () => {
+        if (!modal) {
+            window.scrollTo(0, 0);
+        }
         setModal(!modal);
     }
 
@@ -43,9 +46,17 @@ const PhotoDetail = () => {
             }
         }
 
+        if (modal) {
+            document.body.style.overflowY = 'hidden'
+        } else {
+            document.body.style.overflowY = 'visible'
+        }
+
         getPhoto();
 
-    }, []);
+
+
+    }, [modal]);
 
     return (
 
@@ -54,7 +65,7 @@ const PhotoDetail = () => {
             {
                 modal && (
                     <div className="absolute top-0 left-0 bg-black/90 w-full h-screen p-8 lg:p-[5rem] flex items-center">
-                        <div className="absolute top-8 right-8 text-white cursor-pointer" onClick={handleModal}>
+                        <div className="absolute top-8 right-8 text-white cursor-pointer z-20" onClick={handleModal}>
                             <AiOutlineClose
                                 size={30}
                             />
@@ -62,16 +73,16 @@ const PhotoDetail = () => {
                         <img
                             src={photo?.urls.full}
                             alt={photo?.alt_description}
-                            className="w-full lg:h-full object-cover"
+                            className="w-full h-full object-contain"
                         />
                     </div>
                 )
             }
-            <div className="grid lg:grid-cols-3 text-sm lg:text-base border rounded-lg shadow-lg">
+            <div className="grid lg:grid-cols-2 text-sm lg:text-base border rounded-lg shadow-lg">
                 <img
                     src={photo?.urls.regular}
                     alt={photo?.alt_description}
-                    className="rounded-t-lg lg:rounded-l-lg lg:rounded-t-none shadow-lg w-full h-full object-cover col-span-2 cursor-pointer"
+                    className="rounded-t-lg lg:rounded-s-lg aspect-square w-full h-full object-cover cursor-zoom-in"
                     onClick={handleModal}
                 />
                 <div className="p-4">

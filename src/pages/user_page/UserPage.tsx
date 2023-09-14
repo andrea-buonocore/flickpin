@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Photo, User } from "../../Interfaces/Photo";
 import { FaSpinner } from "react-icons/fa";
-import { FaXTwitter, FaInstagram, FaPaypal, FaDev } from "react-icons/fa6";
+import { FaXTwitter, FaInstagram, FaDev } from "react-icons/fa6";
 
 const UserPage = () => {
 
