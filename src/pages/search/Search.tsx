@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Photo, SearchResult } from "../../Interfaces/Photo";
 import { FaRegHeart, FaSpinner } from "react-icons/fa";
+import clsx from "clsx";
 
 const Search = () => {
 
@@ -48,7 +49,7 @@ const Search = () => {
 
     return (
         <div className="p-8">
-            <h3 className="mb-4">{} result for: <b>{query}</b></h3>
+            <h3 className="mb-4">{photos?.total} result for: <b>{query}</b></h3>
             {
                 isLoading && (
                     <div className="flex justify-center my-4">
@@ -98,12 +99,9 @@ const Search = () => {
                     })
                 }
             </div>
-            <div className="flex items-center justify-center gap-1">
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>2</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>3</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>4</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>...{photos?.total}</button>
+            <div className="flex items-center justify-center gap-1">                
+                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s-1)}>{'<<'}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>{'>>'}</button>                
             </div>
         </div>
     )
