@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Photo } from "../../Interfaces/Photo";
+import { Photo, SearchResult } from "../../Interfaces/Photo";
 import { FaRegHeart, FaSpinner } from "react-icons/fa";
 
 const Search = () => {
 
-    const [photos, setPhotos] = useState<Photo[] | null>([]);
+    const [photos, setPhotos] = useState<SearchResult | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    // const [pageCounter, setPageCounter] = useState<number>(1);
+    const [pageCounter, setPageCounter] = useState<number>(1);
     const params = useParams();
     const { query } = params;
 
@@ -23,14 +23,14 @@ const Search = () => {
 
             try {
 
-                let response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=12&page=${1}`, {
+                let response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=12&page=${pageCounter}`, {
                     method: "GET",
                     headers: headersList
                 });
 
                 let data = await response.json();
                 console.log(data);
-                setPhotos(data.results)
+                setPhotos(data)
 
 
             } catch (error) {
@@ -43,11 +43,12 @@ const Search = () => {
         }
 
         getPhotos();
-    }, []);
+
+    }, [pageCounter]);
 
     return (
         <div className="p-8">
-            <h3 className="mb-4">Result for: <b>{query}</b></h3>
+            <h3 className="mb-4">{} result for: <b>{query}</b></h3>
             {
                 isLoading && (
                     <div className="flex justify-center my-4">
@@ -55,10 +56,10 @@ const Search = () => {
                     </div>
                 )
             }
-            <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 mb-12">
                 {
                     photos &&
-                    photos.map(photo => {
+                    photos?.results.map(photo => {
                         return (
                             <div key={photo.id}>
                                 <Link to={`/photo/${photo.id}`}>
@@ -97,12 +98,12 @@ const Search = () => {
                     })
                 }
             </div>
-            <div className="flex items-center justify-center gap-1 my-8">
+            <div className="flex items-center justify-center gap-1">
                 <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
-                <button className="border rounded px-2 hover:bg-slate-200 transition">{1}</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>2</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>3</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>4</button>
+                <button className="border rounded px-2 hover:bg-slate-200 transition" onClick={() => setPageCounter(s => s+1)}>...{photos?.total}</button>
             </div>
         </div>
     )

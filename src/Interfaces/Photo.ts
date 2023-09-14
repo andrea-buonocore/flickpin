@@ -390,3 +390,8 @@ export interface Photo {
     paypal_email: any
   }
   
+  export interface SearchResult {
+    total: number
+    total_pages: number
+    results: Photo[]
+  }
