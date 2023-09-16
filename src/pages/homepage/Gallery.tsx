@@ -1,48 +1,21 @@
-import { useEffect, useState } from "react";
-import { Photo } from "../../Interfaces/Photo";
 import { FaRegHeart, FaSpinner } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Photo } from "../../Interfaces/Photo";
 
-const Gallery = () => {
+interface GalleryProps {
+    photos: Photo[] | null,
+    loading: boolean
+}
 
-    const [photos, setPhotos] = useState<Photo[] | null>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+const Gallery = ({photos, loading} : GalleryProps) => {
 
-    const headersList = {
-        "Accept": "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Authorization": "Client-ID 0QuxCCaZBXT_3um02bZmS5ZwrZ7XXs08qyCTTjg1KhE"
-    }
-
-    useEffect(() => {
-
-        const getPhotos = async () => {
-
-            try {
-
-                let response = await fetch("https://api.unsplash.com/photos?per_page=12", {
-                    method: "GET",
-                    headers: headersList
-                });
-
-                let data = await response.json();
-                setPhotos(data);
-                setIsLoading(false)
-
-
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        getPhotos();
-
-    }, []);
+   
 
     return (
+        
         <div className="p-8">
             {
-                !photos && isLoading && (
+                !photos && loading && (
                     <div className="mb-8 flex justify-center">
                         <FaSpinner size={30} className="animate-spin" />
                     </div>

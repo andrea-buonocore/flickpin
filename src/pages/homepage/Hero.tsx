@@ -1,18 +1,18 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { Photo } from "../../Interfaces/Photo";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Photo } from "../../Interfaces/Photo";
 
-const Hero = () => {
+interface HeroProps {
+    photo: Photo | null
+}
 
-    const [photo, setPhoto] = useState<Photo | null>(null);
+const Hero = ({photo} : HeroProps) => {
+
+
     const [query, setQuery] = useState<string>('');
     const navigate = useNavigate()
 
-    let headersList = {
-        "Accept": "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Authorization": "Client-ID 0QuxCCaZBXT_3um02bZmS5ZwrZ7XXs08qyCTTjg1KhE"
-    }
+    
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value)
@@ -24,32 +24,9 @@ const Hero = () => {
 
     }
 
-    useEffect(() => {
-
-        const getPhoto = async () => {
-
-            try {
-
-                let response = await fetch("https://api.unsplash.com/photos/random", {
-                    method: "GET",
-                    headers: headersList
-                });
-
-                let data = await response.json();
-                setPhoto(data);
-
-
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        getPhoto();
-
-    }, []);
-
     return (
 
+        
         <div className="h-[70vh] relative flex flex-col items-center justify-center">
 
             <div className="absolute top-0 left-0 w-full h-full bg-black/70 text-white flex flex-col items-center justify-center p-8">

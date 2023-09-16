@@ -4,16 +4,11 @@ import { useParams } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { BsDownload } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai"
+import { headersList } from "../../utilities/headerlist";
 const PhotoDetail = () => {
 
     const [photo, setPhoto] = useState<Photo | null>(null);
     const [modal, setModal] = useState<boolean>(false);
-
-    const headersList = {
-        "Accept": "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Authorization": "Client-ID 0QuxCCaZBXT_3um02bZmS5ZwrZ7XXs08qyCTTjg1KhE"
-    }
 
     const param = useParams();
     const { id } = param;

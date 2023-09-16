@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { SearchResult } from "../../Interfaces/Photo";
 import { FaRegHeart, FaSpinner } from "react-icons/fa";
+import { headersList } from "../../utilities/headerlist";
 
 
 const Search = () => {
@@ -12,11 +13,6 @@ const Search = () => {
     const params = useParams();
     const { query } = params;
 
-    const headersList = {
-        "Accept": "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Authorization": "Client-ID 0QuxCCaZBXT_3um02bZmS5ZwrZ7XXs08qyCTTjg1KhE"
-    }
 
     useEffect(() => {
 
