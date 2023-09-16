@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Photo, User } from "../../Interfaces/Photo";
 import { FaSpinner } from "react-icons/fa";
 import { FaXTwitter, FaInstagram, FaDev } from "react-icons/fa6";
+import { headersList } from "../../utilities/headerlist";
 
 const UserPage = () => {
 
@@ -12,11 +13,6 @@ const UserPage = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { username } = params;
 
-    const headersList = {
-        "Accept": "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-        "Authorization": "Client-ID 0QuxCCaZBXT_3um02bZmS5ZwrZ7XXs08qyCTTjg1KhE"
-    }
 
     useEffect(() => {
 
