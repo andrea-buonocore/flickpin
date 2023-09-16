@@ -173,7 +173,7 @@ const UserPage = () => {
                 userPhotos &&
                 <div className="my-8">
                     <div className="font-bold text-lg mb-4">My Pics</div>
-                    <div className="grid grid-cols-3 lg:grid-cols-4 gap-2">
+                    <div className="grid grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-2 lg:gap-4">
                         {
                             userPhotos?.map((photo) => {
                                 return (

@@ -98,7 +98,7 @@ const PhotoDetail = () => {
                         onClick={handleModal}
                     />
                     <div className="p-4">
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center justify-between mb-4 py-4 border-b">
                             <div className="flex items-center gap-2">
                                 <img
                                     src={photo?.user.profile_image.large}
