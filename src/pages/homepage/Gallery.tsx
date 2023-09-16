@@ -33,7 +33,7 @@ const Gallery = ({photos, loading} : GalleryProps) => {
                                         <img
                                             src={photo.urls.regular}
                                             alt={photo.alt_description}
-                                            className="aspect-square w-full h-full object-cover hover:scale-125 cursor-pointer transition"
+                                            className="aspect-square w-full h-full object-cover hover:scale-125 cursor-pointer transition hover:brightness-110"
                                             loading="lazy"
                                         />
                                     </div>

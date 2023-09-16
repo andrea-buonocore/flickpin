@@ -7,8 +7,8 @@ import { FaXTwitter, FaInstagram, FaDev } from "react-icons/fa6";
 const UserPage = () => {
 
     const params = useParams();
-    const [user, setUser] = useState<User | null>(null);
-    const [userPhotos, setUserPhotos] = useState<Photo[] | [] | null>([])
+    const [user, setUser] = useState<User | undefined>(undefined);
+    const [userPhotos, setUserPhotos] = useState<Photo[] | []>([])
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { username } = params;
 
@@ -33,7 +33,6 @@ const UserPage = () => {
                 console.log('data', data);
                 setUser(data);
 
-
             } catch (error) {
                 console.log(error);
             }
@@ -46,25 +45,34 @@ const UserPage = () => {
         const getUserPhotos = async () => {
 
             try {
-
-                let response = await fetch(`${user?.links.photos}`, {
-                    method: "GET",
-                    headers: headersList
-                });
-
-                let data = await response.json();
-                console.log('foto', data);
-                setUserPhotos(data);
-
-
+                let url = `https://api.unsplash.com/users/${username}/photos`;
+                console.log('url', url)
+        
+                if (url) {
+                    let response = await fetch(url, {
+                        method: "GET",
+                        headers: headersList
+                    });
+        
+                    if (response.ok) {
+                        let data = await response.json();
+                        console.log('foto', data);
+                        setUserPhotos(data);
+                    } else {
+                        console.error('Errore nella richiesta: ' + response.statusText);
+                    }
+                } else {
+                    console.error('L\'URL non è valido');
+                }
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
-
         }
+        
 
-        getUserProfile();
-        getUserPhotos();
+        
+
+        Promise.all([getUserProfile(), getUserPhotos()])
 
     }, []);
 
@@ -161,25 +169,28 @@ const UserPage = () => {
             </div>
 
             {/* user photos */}
-            <div className="my-8">
-                <div className="font-bold text-lg mb-4">My Pics</div>
-                <div className="grid grid-cols-3 lg:grid-cols-4 gap-2">
-                    {
-                        userPhotos && userPhotos.map((photo) => {
-                            return (
-                                <div className="overflow-hidden rounded-lg aspect-square">
-                                    <img
-                                        src={photo.urls.regular}
-                                        alt={photo.alt_description}
-                                        className=" w-full h-full object-cover hover:scale-125 cursor-pointer transition"
-                                    />
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+            {
+                userPhotos &&
+                <div className="my-8">
+                    <div className="font-bold text-lg mb-4">My Pics</div>
+                    <div className="grid grid-cols-3 lg:grid-cols-4 gap-2">
+                        {
+                            userPhotos?.map((photo) => {
+                                return (
+                                    <div className="overflow-hidden rounded-lg aspect-square" key={photo.id}>
+                                        <img
+                                            src={photo.urls.regular}
+                                            alt={photo.alt_description}
+                                            className=" w-full h-full object-cover hover:scale-125 cursor-pointer transition"
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
 
-            </div>
+                </div>
+            }
 
         </div>
     )

@@ -20,7 +20,7 @@ const Search = () => {
 
             try {
 
-                let response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=12&page=${pageCounter}`, {
+                let response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=10&page=${pageCounter}`, {
                     method: "GET",
                     headers: headersList
                 });

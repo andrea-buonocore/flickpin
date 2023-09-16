@@ -39,7 +39,7 @@ const Hero = ({photo} : HeroProps) => {
                         type="search"
                         name="image"
                         className="rounded-full py-3 px-4 outline-none w-[80%] md:w-[50%] lg:w-[30%] text-black font-light text-xs placeholder:italic shadow"
-                        placeholder="Lasciati ispirare.."
+                        placeholder="comincia da qui.."
                         value={query}
                         onChange={handleChange}
                     />

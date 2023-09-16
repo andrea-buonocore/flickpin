@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Photo } from "../../Interfaces/Photo";
 import { useParams } from "react-router-dom";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaSpinner } from "react-icons/fa";
 import { BsDownload } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai"
 import { headersList } from "../../utilities/headerlist";
@@ -9,6 +9,7 @@ const PhotoDetail = () => {
 
     const [photo, setPhoto] = useState<Photo | null>(null);
     const [modal, setModal] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const param = useParams();
     const { id } = param;
@@ -38,6 +39,10 @@ const PhotoDetail = () => {
 
             } catch (error) {
                 console.log(error);
+            }
+
+            finally {
+                setIsLoading(false);
             }
         }
 
@@ -73,40 +78,53 @@ const PhotoDetail = () => {
                     </div>
                 )
             }
-            <div className="grid lg:grid-cols-2 text-sm lg:text-base border rounded-lg shadow-lg">
-                <img
-                    src={photo?.urls.regular}
-                    alt={photo?.alt_description}
-                    className="rounded-t-lg lg:rounded-s-lg aspect-square w-full h-full object-cover cursor-zoom-in"
-                    onClick={handleModal}
-                />
-                <div className="p-4">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                            <img
-                                src={photo?.user.profile_image.large}
-                                alt=""
-                                className="rounded-full aspect-square cursor-pointer"
-                                width={30}
-                            />
-                            {photo?.user.name}
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2">
-                                <FaRegHeart />
-                                {photo?.likes}
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <BsDownload />
-                                {photo?.downloads}
-                            </div>
-                        </div>
+
+            {
+                isLoading && (
+                    <div className="flex justify-center my-4">
+                        <FaSpinner size={30} className="animate-spin" />
                     </div>
-                    <div>
-                        {photo?.description}
+                )
+            }
+
+            {
+                photo &&
+
+                <div className="grid lg:grid-cols-2 text-sm lg:text-base border rounded-lg shadow-lg">
+                    <img
+                        src={photo?.urls.regular}
+                        alt={photo?.alt_description}
+                        className="rounded-t-lg lg:rounded-s-lg aspect-square w-full h-full object-cover cursor-zoom-in"
+                        onClick={handleModal}
+                    />
+                    <div className="p-4">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-2">
+                                <img
+                                    src={photo?.user.profile_image.large}
+                                    alt=""
+                                    className="rounded-full aspect-square cursor-pointer"
+                                    width={30}
+                                />
+                                {photo?.user.name}
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-2">
+                                    <FaRegHeart />
+                                    {photo?.likes}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <BsDownload />
+                                    {photo?.downloads}
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            {photo?.description}
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
 
     )
